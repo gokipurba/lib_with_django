@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{page_title}}
+{% endblock title %}
+
+
+{% block contents %}
+	<div class="container">
+	<center><h1>DAFTAR BUKU</h1></center>
+	<br>
+	<table class="table">
+		<thead>
+		  <tr>
+			<th scope="col">No</th>
+			<th scope="col">Judul</th>
+			<th scope="col">Penulis</th>
+			<th scope="col">Category</th>
+			<th scope="col">isi</th>
+			<th scope="col"><center>Delete</center></th>
+			<th scope="col"><center>Update</center></th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for post in posts  %}   
+			  <tr>
+				<th scope="row">{{forloop.counter}}</th>
+				<td>{{post.judul}}</td>
+				<td>{{post.author}}</td>
+				<td>{{post.category}}</td>
+				<td>{{post.body}}</td>
+				<td><center><a class="btn btn-danger" href="{% url 'blog:delete' post.id %}" title="">Delete</a></td>
+				<td><a class="btn btn-warning" href="{% url 'blog:update' post.id %}" title="">Update</a></center></td>
+			  </tr>
+			  {% endfor %}
+		</tbody>
+	  </table>
+	</div>
+
+{% endblock contents %}
